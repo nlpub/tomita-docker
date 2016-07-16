@@ -1,2 +1,4 @@
-app:
-  build: .
+version: '2'
+services:
+  tomita:
+    build: .
