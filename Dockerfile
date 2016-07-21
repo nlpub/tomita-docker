@@ -16,13 +16,14 @@ mkdir -p /tomita/build && \
 cd /tomita/build && \
 cmake ../src/ -DMAKE_ONLY=FactExtract/Parser/tomita-parser -DCMAKE_BUILD_TYPE=Release && \
 make -j2 && \
-mv /tomita/build/FactExtract/Parser/tomita-parser/tomita-parser /tomita/tomita-parser && \
-rm -rf /tomita/.git /tomita/src /tomita/build && \
-echo 'PATH=/tomita:$PATH'>/etc/profile.d/tomita.sh
+mv /tomita/build/FactExtract/Parser/tomita-parser/tomita-parser /tomita/parser && \
+rm -rf /tomita/.git /tomita/src /tomita/build
 
 RUN \
 curl -sL -O 'https://github.com/yandex/tomita-parser/releases/download/v1.0/libmystem_c_binding.so.linux_x64.zip' && \
 unzip /libmystem_c_binding.so.linux_x64.zip && \
 mv -f /libmystem_c_binding.so /tomita/libmystem_c_binding.so && \
 chmod +x /tomita/libmystem_c_binding.so && \
-rm -f /libmystem_c_binding.so.linux_x64.zip
+rm -f /libmystem_c_binding.so.linux_x64.zip && \
+echo '#!/bin/sh\n/tomita/parser $@' >/usr/bin/tomita-parser && \
+chmod +x /usr/bin/tomita-parser
