@@ -1,12 +1,10 @@
-FROM buildpack-deps:trusty-scm
+FROM buildpack-deps:sid-scm
 
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
-ENV CC=gcc-4.8 CXX=g++-4.8
-
 RUN \
 apt-get update && \
-apt-get install -y -o Dpkg::Options::="--force-confold" --no-install-recommends cmake unzip lua5.2 make $CC $CXX && \
+apt-get install -y -o Dpkg::Options::="--force-confold" --no-install-recommends build-essential cmake unzip lua5.2 && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/*
 
