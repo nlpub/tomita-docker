@@ -1,4 +1,4 @@
-FROM buildpack-deps:sid-scm
+FROM buildpack-deps:xenial-scm
 
 MAINTAINER Dmitry Ustalov <dmitry.ustalov@gmail.com>
 
